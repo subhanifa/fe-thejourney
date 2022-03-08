@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "DancingScript-Bold";
+  src: local("DancingScript-Bold"), url(../fonts/DancingScript-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Summer-Vibes";
+  src: local("Summer-Vibes"), url(../fonts/Summer-Vibes.otf) format("truetype");
+}
