@@ -1,9 +1,24 @@
 @font-face {
   font-family: "DancingScript-Bold";
-  src: local("DancingScript-Bold"), url(../fonts/DancingScript-Bold.ttf) format("truetype");
+  src: url("../fonts/DancingScript-Bold.ttf");
+}
+
+@font-face {
+  font-family: "DancingScript-Medium";
+  src: url("../fonts/DancingScript-Medium.ttf");
+}
+
+@font-face {
+  font-family: "DancingScript-Regular";
+  src: url("../fonts/DancingScript-Regular.ttf");
+}
+
+@font-face {
+  font-family: "DancingScript-SemiBold";
+  src: url("../fonts/DancingScript-SemiBold.ttf");
 }
 
 @font-face {
   font-family: "Summer-Vibes";
-  src: local("Summer-Vibes"), url(../fonts/Summer-Vibes.otf) format("truetype");
+  src: url("../fonts/Summer-Vibes.otf");
 }
