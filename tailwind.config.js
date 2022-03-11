@@ -7,16 +7,18 @@ module.exports = {
     extend: {
       colors: {
         'white': '#FFFAFF',
+        'black': '#0A090C',
+        'blue': '#2589BD',
         'dark-blue': '#0A2463',
+        'light-blue': '#3E92CC',
+        'mid-blue': '#90DDF0',
         'magenta': '#922D50',
         'silver': '#C0C5C1',
-        'black': '#0A090C',
-        'red': '#D8315B',
-        'light-blue': '#3E92CC',
+        'maroon': '#D8315B',
         'tangerine': '#F79256',
         'ming': '#2C666E',
-        'midblue': '#90DDF0',
-        'beige': '#F2F5DE'
+        'beige': '#F2F5DE',
+        'cyan': '#4DFFF3',
       },
       backgroundImage: {
         header: "url('/src/assets/images/jumbotron.png')"

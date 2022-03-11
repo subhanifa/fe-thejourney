@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './index.css';
 import 'flowbite';
+import reportWebVitals from './reportWebVitals';
+import { LoginProvider } from './contexts/AuthContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <LoginProvider>
+      <App />
+    </LoginProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
