@@ -5,12 +5,18 @@ import './index.css';
 import 'flowbite';
 import reportWebVitals from './reportWebVitals';
 import { LoginProvider } from './contexts/AuthContext';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { UserProvider } from './contexts/UserContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <LoginProvider>
-      <App />
-    </LoginProvider>
+    <UserProvider>
+      <LoginProvider>
+        <Router>
+          <App />
+        </Router>
+      </LoginProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
