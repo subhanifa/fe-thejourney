@@ -1,6 +1,5 @@
 import { Dialog } from '@headlessui/react'
 import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { API } from '../../config/api'
 import { LoginContext, RegisteredContext } from '../../contexts/AuthContext'
 import { ModalContext } from '../../contexts/ModalContext'
@@ -50,9 +49,8 @@ export default function LoginModal() {
               type: "LOGIN_SUCCESS",
               payload: response.data.user,
             });
-
-            setLogin(!login);
             setOpen(!open);
+            setLogin(!login);
             // setOpen(false)
             // if (response.data.user.status === "admin") {
             //   navigate("/");
@@ -61,6 +59,15 @@ export default function LoginModal() {
     
           }
         } catch (error) {
+          const alert = (
+            <div
+              class="flex items-center text-red-500 border border-red-500 rounded-lg py-2 text-md justify-center font-bold"
+              role="alert"
+            >
+              <p>Failed to login. Try Again</p>
+            </div>
+          );
+          setMessage(alert);
           console.log(error);
         }
     };
@@ -70,7 +77,7 @@ export default function LoginModal() {
     <Dialog.Title as="h3" className=" text-2xl font-bold text-red-700">
         Login
     </Dialog.Title>
-    {/* {message && message} */}
+    {message && message}
     <form onSubmit={handleSubmit} className="space-y-5">
         <div>
             <input

@@ -7,9 +7,9 @@ import Story from '../tempData/Story'
 
 export default function Profile() {
   return (
-    <div>
+    <>
         {/* <Nav /> */}
-      <div className='relative mx-5 my-4 md:mx-20 md:my-8'>
+      <div className='relative mx-5 my-4 md:mx-24 md:my-8'>
           <h1 className='text-3xl md:text-4xl font-bold font-patrick tracking-wider mb-10 md:mx-3'>
             Profile
           </h1>
@@ -35,6 +35,6 @@ export default function Profile() {
               ))}
           </div>
       </div>
-    </div>
+    </>
   )
 }

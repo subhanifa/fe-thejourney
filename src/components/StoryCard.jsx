@@ -10,8 +10,8 @@ export default function StoryCard(props) {
         </div>
         <div className ="px-4 self-center space-y-4 py-4 md:space-y-1 max-h-max">
             <p className ="tracking-wide text-black font-bold">{props.title}</p>
-            <p className='text-xs text-silver'>{props.date}, {props.author}</p>
-            <p className ="text-sm text-black font-base line-clamp-5">{props.desc}</p>
+            <p className="text-xs text-silver">{props.date}</p>
+            <p className ="text-sm text-black font-base line-clamp-4">{props.desc}</p>
         </div>
     </div>
   )

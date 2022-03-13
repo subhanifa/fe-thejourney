@@ -5,6 +5,8 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom'
 import { ModalContext } from '../contexts/ModalContext'
+import { UserContext } from '../contexts/UserContext'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -12,6 +14,18 @@ export default function Nav() {
     const [ login, setLogin ] = useContext(LoginContext)
     const [ open, setOpen ] = useContext(ModalContext)
     const [ registered, setRegistered ] = useContext(RegisteredContext)
+    const [ state, dispatch ] = useContext(UserContext);
+
+    let navigate = useNavigate();
+
+    const logout = () => {
+        setLogin(false);
+        dispatch({
+          type: "LOGOUT",
+        });
+        navigate("/");
+      };
+
     return (
         <div>
             {login ? (
@@ -90,7 +104,7 @@ export default function Nav() {
                                     </>
                                 
                                 <hr />
-                                <Menu.Item>
+                                <Menu.Item onClick={logout}>
                                     <div className="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer">
                                     <img src={Logout} className="w-5 mr-2" alt="logout" />
                                         Logout

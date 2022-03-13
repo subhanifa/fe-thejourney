@@ -5,7 +5,6 @@ import StoryMenu from '../components/StoryMenu'
 export default function LandingPages() {
   return (
     <>
-        {/* <Nav /> */}
         <StoryMenu />
     </>
   )
