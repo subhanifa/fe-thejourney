@@ -8,9 +8,12 @@ export default function StoryCard(props) {
         <div className=''>
             <img src={props.image} alt="product" className="h-36 w-full object-cover" />
         </div>
-        <div className ="px-4 self-center space-y-4 py-4 md:space-y-1 max-h-max">
+        <div className ="px-4 self-center py-4 max-h-max">
             <p className ="tracking-wide text-black font-bold">{props.title}</p>
-            <p className="text-xs text-silver">{props.date}</p>
+              <div className='flex justify-start text-xs text-silver gap-1 mb-4'>
+                <p>{props.date},</p>
+                <p>{props.name}</p>
+              </div>
             <p className ="text-sm text-black font-base line-clamp-4">{props.desc}</p>
         </div>
     </div>

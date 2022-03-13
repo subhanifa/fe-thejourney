@@ -82,8 +82,9 @@ function App() {
           <Route>
             <Route path='/' element={<LandingPages />}/>
             <Route path='/story/:id' element={<StoryDetail/>} />
+            
               <Route exact path="/" element={<PrivateRoute/>} > 
-                <Route path='/my-profile' element={<Profile />} />
+                <Route path='/profile/:fullname' element={<Profile />} />
                 <Route path='/add-journey' element={<AddJourney />} />
                 <Route path='/my-bookmark' element={<Bookmarks />} />
               </Route>

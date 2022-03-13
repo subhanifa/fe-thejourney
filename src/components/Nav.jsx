@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect  } from 'react'
+import { useParams } from 'react-router';
 import { LoginContext, RegisteredContext } from '../contexts/AuthContext'
 import { BookmarkIcon, Default, Journey, Logout, Profile } from '../exports/exportImage'
 import { Fragment } from 'react'
@@ -7,7 +8,8 @@ import { Link } from 'react-router-dom'
 import { ModalContext } from '../contexts/ModalContext'
 import { UserContext } from '../contexts/UserContext'
 import { useNavigate } from 'react-router-dom'
-
+import { API } from '../config/api'
+import urlSlug from "url-slug";
 
 
 export default function Nav() {
@@ -25,6 +27,25 @@ export default function Nav() {
         });
         navigate("/");
       };
+
+    //   let { id } = useParams();
+      const [ user, setUser ] = useState([])
+
+      const getUser = async() => {
+        try {
+            const response = await API.get('/profile')
+            console.log(response);
+            setUser(response.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+      }  
+      useEffect(() => {
+        getUser();
+        return() => {
+            setUser([]);
+        }
+      }, [])
 
     return (
         <div>
@@ -64,7 +85,8 @@ export default function Nav() {
                                     <>
                                         <Menu.Item>
                                             <Link
-                                            to="/my-profile"
+                                            to={"/profile/" + urlSlug(user.fullname)}
+                                            // to={`/user/${id}`}
                                             className="px-4 py-1 flex items-center hover:bg-gray-100 w-full"
                                             >
                                             <img

@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import Story from '../tempData/Story'
 import { SearchBox } from './SearchBox'
 import StoryCard from './StoryCard'
 import { API } from '../config/api'
 import { Link } from 'react-router-dom'
+import dateformat from 'dateformat'
 
 export default function StoryMenu() {
 
   const [ stories, setStories ] = useState([])
+  const [ user, setUser ] = useState([])    
 
   const getStories = async() => {
     try {
       const response = await API.get("/stories") 
       setStories(response.data.stories.data)
+      setUser(response.data.stories.data.user)
+      console.log(response)
     } catch (error) {
       console.log(error)
     }  
   }
   
   useEffect(() => {
-    getStories();
+    getStories([]);
   }, []);
 
 
@@ -38,6 +41,8 @@ export default function StoryMenu() {
                     image={items.image}
                     title={items.title}
                     desc={items.desc}
+                    date={dateformat(items.createdAt, "mediumDate")}
+                    name={items.user.fullname}
                 />
               </Link>
             ))}
