@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import StoryCard from '../components/StoryCard'
 import { API } from '../config/api'
-import { Default, EditIcon } from '../exports/exportImage'
-import Story from '../tempData/Story'
+import { Bookmark, Default, EditIcon } from '../exports/exportImage'
 import dateformat from 'dateformat'
 import { Link } from 'react-router-dom'
 
@@ -60,15 +59,20 @@ export default function Profile() {
 
           <div className='px-10 flex flex-wrap justify-start w-full gap-4 mx-auto mt-10 '>
               {stories.map((items, index) => (
-                <Link key={index} to={`/story/${items.id}`}>
-                  <StoryCard
-                  image={items.image}
-                  title={items.title}
-                  desc={items.desc}
-                  date={dateformat(items.createdAt, "mediumDate")}
-                  name={items.user.fullname}
-                  />
-                </Link>
+                <div key={index} className='relative'>
+                  <div>
+                    <img src={Bookmark} alt="" className='absolute z-30 right-1 top-1'/>
+                  </div>
+                  <Link to={`/story/${items.id}`}>
+                    <StoryCard
+                    image={items.image}
+                    title={items.title}
+                    desc={items.desc}
+                    date={dateformat(items.createdAt, "mediumDate")}
+                    name={items.user.fullname}
+                    />
+                  </Link>
+                </div>
               ))}
           </div>
       </div>

@@ -4,6 +4,8 @@ import StoryCard from './StoryCard'
 import { API } from '../config/api'
 import { Link } from 'react-router-dom'
 import dateformat from 'dateformat'
+import { Bookmark } from '../exports/exportImage'
+
 
 export default function StoryMenu() {
 
@@ -27,7 +29,7 @@ export default function StoryMenu() {
 
 
   return (
-    <div className='relative mx-5 my-4 md:mx-24 md:my-8'>
+    <div className='relative mx-5 my-4 md:mx-20 md:my-8'>
         <h1 className='text-3xl mb-10 md:mx-3 md:text-4xl font-bold font-patrick tracking-wider '>
           Journey
         </h1>
@@ -36,15 +38,20 @@ export default function StoryMenu() {
 
         <div className='gap-4 mx-auto mt-10 px-10 flex flex-wrap justify-center md:justify-start w-full  '>
             {stories.map((items, index) => (
-              <Link key={index} to={`/story/${items.id}`}>
-                <StoryCard
-                    image={items.image}
-                    title={items.title}
-                    desc={items.desc}
-                    date={dateformat(items.createdAt, "mediumDate")}
-                    name={items.user.fullname}
-                />
-              </Link>
+              <div key={index} className='relative'>
+                <div>
+                  <img src={Bookmark} alt="" className='absolute z-30 right-1 top-1'/>
+                </div>
+                <Link  to={`/story/${items.id}`}>
+                  <StoryCard
+                      image={items.image}
+                      title={items.title}
+                      desc={items.desc}
+                      date={dateformat(items.createdAt, "mediumDate")}
+                      name={items.user.fullname}
+                  />
+                </Link>
+              </div>
             ))}
         </div>
     </div>
