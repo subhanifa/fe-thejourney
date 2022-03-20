@@ -14,7 +14,13 @@ import KawahIjen from "../assets/images/kawahijen.jpg"
 import KomodoOne from "../assets/images/komodoisland.jpg"
 import KomodoTwo from "../assets/images/pulaukomodo.jpg"
 import EditIcon from "../assets/images/edit-icon.png"
-
+import LeafIcon from "../assets/images/login-leaf-icon.png"
+import PinIcon from "../assets/images/login-pin-icon.png"
+import Bookmarked from "../assets/images/bookmark-circle-fill.png"
+import LogoBook from "../assets/images/logo-map-book.png"
+import LeafTop from "../assets/images/leaf-top.png"
+import Hibiscus from "../assets/images/hibiscus-top.png"
+import Preview from "../assets/images/image-preview.png"
 export {
     Jumbotron,
     Bookmark,
@@ -32,4 +38,11 @@ export {
     KomodoOne,
     KomodoTwo,    
     EditIcon,
+    LeafIcon,
+    PinIcon,
+    Bookmarked,
+    LogoBook,
+    LeafTop,
+    Hibiscus,
+    Preview
 }

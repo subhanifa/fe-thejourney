@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import { API } from '../config/api';
-import { KomodoOne } from '../exports/exportImage'
 import dateformat from 'dateformat'
+import DOMPurify from 'dompurify';
 
 export default function StoryDetail() {
     let { id } = useParams();
     const [ data, setData ] = useState({})
     const [ user, setUser ] = useState([])    
-
+    var clean = DOMPurify.sanitize(data.desc);
     const getStory = async(id) => {
         try {
             const response = await API.get('/story/' + id)
@@ -45,14 +45,10 @@ export default function StoryDetail() {
                     <img src={data.image} alt="" className='w-full object-cover py-7' />
                 </div>
                 <div className='space-y-5 text-silver'>
-                    <p className=''>
-                        tes
-                    </p>
                     <p className='text-black text-3xl font-bold font-patrick tracking-wider'>
                         {data.title}
                     </p>
-                    <p>
-                        {data.desc}
+                    <p dangerouslySetInnerHTML={{ __html: clean }}>
                     </p>
                 </div>
             </div>

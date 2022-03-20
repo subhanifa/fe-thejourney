@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
 import StoryCard from '../components/StoryCard'
 import { API } from '../config/api'
 import { Bookmark, Default, EditIcon } from '../exports/exportImage'
@@ -29,7 +28,7 @@ export default function Profile() {
   const getUserStories = async() => {
     try {
         const response = await API.get('/user-stories')
-        console.log(response);
+        // console.log(response);
         setStories(response.data.user.data)
     } catch (error) {
       console.log(error)
@@ -38,8 +37,6 @@ export default function Profile() {
   useEffect(() => {
     getUserStories()
   }, [])
-
-  
 
   return (
     <>

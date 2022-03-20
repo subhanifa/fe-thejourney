@@ -1,7 +1,10 @@
 import React from 'react'
 import { Bookmark } from '../exports/exportImage'
+import DOMPurify from 'dompurify';
 
 export default function StoryCard(props) {
+  let clean = DOMPurify.sanitize(props.desc);
+
   return (
     <div className="relative mb-5 w-64 md:w-60 h-full rounded-xl bg-white shadow-xl">
         <div className=''>
@@ -13,7 +16,7 @@ export default function StoryCard(props) {
                 <p>{props.date},</p>
                 <p>{props.name}</p>
               </div>
-            <p className ="text-sm text-black font-base line-clamp-4">{props.desc}</p>
+            <p className ="text-sm text-black font-base line-clamp-4" dangerouslySetInnerHTML={{ __html: clean }}></p>
         </div>
     </div>
   )

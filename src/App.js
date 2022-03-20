@@ -87,6 +87,7 @@ function App() {
                 <Route path='/profile/:fullname' element={<Profile />} />
                 <Route path='/add-journey' element={<AddJourney />} />
                 <Route path='/my-bookmark' element={<Bookmarks />} />
+                {/* <Route path='/bookmark/:id' element={<StoryDetail/>} /> */}
               </Route>
             
           </Route>

@@ -15,3 +15,7 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ck-rounded-corners {
+  height: 300px;
+}

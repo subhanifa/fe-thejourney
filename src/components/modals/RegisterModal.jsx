@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import { API } from '../../config/api';
 import { RegisteredContext } from '../../contexts/AuthContext'
 import { UserContext } from '../../contexts/UserContext';
+import { LeafIcon, PinIcon } from '../../exports/exportImage';
 
 export default function RegisterModal() {
     const [registered, setRegistered] = useContext(RegisteredContext)
@@ -15,7 +16,15 @@ export default function RegisterModal() {
         email: "",
         password: "",
     });
+    const { fullname, phone, email, password } = form;
 
+    const handleChange = (e) => {
+      setForm({
+        ...form,
+        [e.target.name]: e.target.value,
+      });
+    };
+    
     const handleSubmit = async (e) => {
         try {
           e.preventDefault();
@@ -66,12 +75,13 @@ export default function RegisterModal() {
                 <p>{response.message}</p>
               </div>
             );
+            console.log(response)
             setMessage(alert);
           }
         } catch (error) {
           const alert = (
             <div
-              className="flex justify-center items-center rounded-md text-red-600 border border-red-600 text-sm font-bold px-4 py-3"
+              className="flex justify-center items-center rounded-md text-ming border border-red-600 text-sm font-bold px-4 py-3"
               role="alert"
             >
               <p>Register Failed. Try Again</p>
@@ -82,28 +92,22 @@ export default function RegisterModal() {
         }
       };
 
-    const { fullname, phone, email, password } = form;
-
-    const handleChange = (e) => {
-        setForm({
-          ...form,
-          [e.target.name]: e.target.value,
-        });
-    };
-
+    
 
     return (
         <>
-            <Dialog.Title as="h3" className=" text-2xl font-bold text-red-700">
+            <Dialog.Title as="h3" className=" text-2xl font-bold text-black">
                 Register
             </Dialog.Title>
             {message && message}
             <form onSubmit={handleSubmit} className="space-y-5">
-                
+            <div className='absolute top-0 right-0 z-20'>
+              <img src={LeafIcon} alt="" className='w-16' />
+            </div>
+            <div className='absolute -top-5 left-0 z-20'>
+              <img src={PinIcon} alt="" className='w-10'/>
+            </div>
             <div>
-                {/* <label htmlFor="fullname" className="sr-only">
-                Full Name
-                </label> */}
                 <input
                 id="fullname"
                 name="fullname"
@@ -111,14 +115,11 @@ export default function RegisterModal() {
                 value={fullname}
                 onChange={handleChange}
                 required
-                className="appearance-none relative block w-full px-3 py-2 border-2 border-red-700 bg-red-50 placeholder-gray-500 rounded-md focus:outline-none  focus:border-red-500 focus:z-10 sm:text-sm"
+                className="appearance-none relative block w-full px-3 py-2 border-2 border-silver bg-beige placeholder-gray-500 rounded-md focus:outline-none focus:z-10 sm:text-sm"
                 placeholder="Full Name"
                 />
             </div>
             <div>
-                {/* <label htmlFor="fullname" className="sr-only">
-                Full Name
-                </label> */}
                 <input
                 id="phone"
                 name="phone"
@@ -126,14 +127,11 @@ export default function RegisterModal() {
                 value={phone}
                 onChange={handleChange}
                 required
-                className="appearance-none relative block w-full px-3 py-2 border-2 border-red-700 bg-red-50 placeholder-gray-500 rounded-md focus:outline-none  focus:border-red-500 focus:z-10 sm:text-sm"
+                className="appearance-none relative block w-full px-3 py-2 border-2 border-silver bg-beige placeholder-gray-500 rounded-md focus:outline-none focus:z-10 sm:text-sm"
                 placeholder="Phone"
                 />
             </div>
             <div>
-                {/* <label htmlFor="email" className="sr-only">
-                Email address
-                </label> */}
                 <input
                 id="email"
                 name="email"
@@ -141,14 +139,11 @@ export default function RegisterModal() {
                 value={email}
                 onChange={handleChange}
                 required
-                className="appearance-none relative block w-full px-3 py-2 border-2 border-red-700 bg-red-50 placeholder-gray-500 rounded-md focus:outline-none  focus:border-red-500 focus:z-10 sm:text-sm"
+                className="appearance-none relative block w-full px-3 py-2 border-2 border-silver bg-beige placeholder-gray-500 rounded-md focus:outline-none focus:z-10 sm:text-sm"
                 placeholder="Email address"
                 />
             </div>
             <div>
-                {/* <label htmlFor="password" className="sr-only">
-                Password
-                </label> */}
                 <input
                 id="password"
                 name="password"
@@ -156,12 +151,12 @@ export default function RegisterModal() {
                 value={password}
                 onChange={handleChange}
                 required
-                className="appearance-none relative block w-full px-3 py-2 border-2 border-red-700 bg-red-50 placeholder-gray-500 rounded-md focus:outline-none  focus:border-red-500 focus:z-10 sm:text-sm"
+                className="appearance-none relative block w-full px-3 py-2 border-2 border-silver bg-beige placeholder-gray-500 rounded-md focus:outline-none focus:z-10 sm:text-sm"
                 placeholder="Password"
                 />
             </div>
             <div>
-                <button type="submit" className=' bg-red-700 w-full text-white px-4 py-2 font-semibold rounded'>
+                <button type="submit" className=' bg-light-blue w-full text-white px-4 py-2 font-semibold rounded'>
                     Register
                 </button>
             </div>

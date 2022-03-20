@@ -1,7 +1,5 @@
 import React, { useContext, useState, useEffect  } from 'react'
-import { useParams } from 'react-router';
 import { LoginContext, RegisteredContext } from '../contexts/AuthContext'
-import { BookmarkIcon, Default, Journey, Logout, Profile } from '../exports/exportImage'
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom'
@@ -9,7 +7,8 @@ import { ModalContext } from '../contexts/ModalContext'
 import { UserContext } from '../contexts/UserContext'
 import { useNavigate } from 'react-router-dom'
 import { API } from '../config/api'
-import urlSlug from "url-slug";
+import Dropdown from './Dropdown'
+import { Hibiscus, Journey, LeafIcon, LeafTop, LogoBook } from '../exports/exportImage'
 
 
 export default function Nav() {
@@ -19,122 +18,48 @@ export default function Nav() {
     const [ state, dispatch ] = useContext(UserContext);
 
     let navigate = useNavigate();
-
     const logout = () => {
         setLogin(false);
         dispatch({
           type: "LOGOUT",
         });
         navigate("/");
-      };
+    };
 
-    //   let { id } = useParams();
-      const [ user, setUser ] = useState([])
-
-      const getUser = async() => {
-        try {
-            const response = await API.get('/profile')
-            console.log(response);
+    const [ user, setUser ] = useState([])
+    const getUser = async() => {
+    try {
+        const response = await API.get('/profile')
             setUser(response.data.data)
-        } catch (error) {
-            console.log(error)
-        }
-      }  
-      useEffect(() => {
+    } catch (error) {
+        console.log(error)
+    }
+    }  
+    useEffect(() => {
         getUser();
         return() => {
             setUser([]);
         }
-      }, [])
+    }, [])
 
     return (
         <div>
             {login ? (
                 <nav className="w-full top-0 px-2 sm:px-14 py-4 rounded bg-white dark:bg-gray-800 shadow-xl">
                     <div className="container flex flex-wrap justify-between items-center mx-auto">
-                        <button  className="flex items-center">
+                        <div  className="flex items-center relative">
                             <Link 
                             to="/"
                             className="self-center text-2xl font-sumvib whitespace-nowrap text-black">
                                 The Journey
+                            <img src={LogoBook} alt="" className='absolute -top-1 -right-8 mt-1' />
+                            <img src={LeafTop} alt="" className='absolute -top-1 left-12'/>
+                            <img src={Hibiscus} alt="" className='absolute top-5 right-0'/>
                             </Link>
-                        </button>
+                        </div>
                         
                         <div>
-                            <Menu as="div" className="relative z-10">
-                            <div>
-                                <Menu.Button>
-                                <span className="sr-only">Open user menu</span>
-                                <img
-                                    src={Default}
-                                    alt="user"
-                                    className="h-12 w-12 object-cover rounded-full border-2 border-brand-red"
-                                />
-                                </Menu.Button>
-                            </div>
-                            <Transition
-                                as={Fragment}
-                                enter="transition ease-out duration-100"
-                                enterFrom="transform opacity-0 scale-95"
-                                enterTo="transform opacity-100 scale-100"
-                                leave="transition ease-in duration-75"
-                                leaveFrom="transform opacity-100 scale-100"
-                                leaveTo="transform opacity-0 scale-95"
-                            >
-                                <Menu.Items className="origin-top-right absolute right-0 mt-1 w-44 py-2 space-y-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                    <>
-                                        <Menu.Item>
-                                            <Link
-                                            to={"/profile/" + urlSlug(user.fullname)}
-                                            // to={`/user/${id}`}
-                                            className="px-4 py-1 flex items-center hover:bg-gray-100 w-full"
-                                            >
-                                            <img
-                                                src={Profile}
-                                                className="w-5 mr-2"
-                                                alt="profile"
-                                            />
-                                                My Profile
-                                            </Link>
-                                        </Menu.Item>
-                                        <Menu.Item>
-                                            <Link
-                                            to="/add-journey"
-                                            className="px-4 py-1 flex items-center hover:bg-gray-100 w-full"
-                                            >
-                                            <img
-                                                src={Journey}
-                                                className="w-5 mr-2"
-                                                alt="profile"
-                                            />
-                                                New Journey
-                                            </Link>
-                                        </Menu.Item>
-                                        <Menu.Item>
-                                            <Link
-                                            to="/my-bookmark"
-                                            className="px-4 py-1 flex items-center hover:bg-gray-100 w-full"
-                                            >
-                                            <img
-                                                src={BookmarkIcon}
-                                                className="w-5 mr-2"
-                                                alt="profile"
-                                            />
-                                                Bookmark
-                                            </Link>
-                                        </Menu.Item>
-                                    </>
-                                
-                                <hr />
-                                <Menu.Item onClick={logout}>
-                                    <div className="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer">
-                                    <img src={Logout} className="w-5 mr-2" alt="logout" />
-                                        Logout
-                                    </div>
-                                </Menu.Item>
-                                </Menu.Items>
-                            </Transition>
-                            </Menu>
+                            <Dropdown />
                         </div>
                         
 
@@ -142,7 +67,7 @@ export default function Nav() {
                 </nav>
             ) : (
             <>
-                <div className='w-full bg-cover brightness-75 bg-ming h-screen md:bg-header md:h-96 '/>
+                <div className='w-full bg-cover brightness-75 bg-ming h-96 md:bg-header md:h-96 '/>
                 <nav className="absolute w-full top-0 px-2 sm:px-14 py-7 rounded dark:bg-gray-800">
                     <div className="container flex flex-wrap justify-between items-center mx-auto">
                         <button  className="flex items-center">
@@ -155,7 +80,7 @@ export default function Nav() {
                         </button>
 
                         <div className="hidden w-full md:block md:w-auto" id="mobile-menu">
-                            <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-lg font-sansita">
+                            <ul className="flex flex-row mt-4 md:space-x-8 md:mt-0 md:text-lg font-sansita">
                                 <li className=''>
                                     <button
                                     onClick={() => {
@@ -177,7 +102,7 @@ export default function Nav() {
                             </ul>
                         </div>
                     </div>
-                    <div className='flex flex-col px-3 py-14 md:py-12 md:px-10 gap-5'>
+                    <div className='flex flex-col px-3 py-8 md:py-12 md:px-10 gap-5'>
                         <span className="text-white font-sansita text-4xl md:text-5xl" >The Journey <br/>you ever dreamed of.</span>
                         <span className='text-beige text-base md:text-lg'>We made a tool so you can easily keep & share your travel memories.<br/>But there is a lot more</span>
                     </div>
