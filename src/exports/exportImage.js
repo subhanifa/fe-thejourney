@@ -21,6 +21,11 @@ import LogoBook from "../assets/images/logo-map-book.png"
 import LeafTop from "../assets/images/leaf-top.png"
 import Hibiscus from "../assets/images/hibiscus-top.png"
 import Preview from "../assets/images/image-preview.png"
+import Delete from "../assets/images/delete-modified.png"
+import Search from "../assets/images/search-modified.png"
+import Confirm from "../assets/images/confirm-modified.png"
+
+
 export {
     Jumbotron,
     Bookmark,
@@ -44,5 +49,8 @@ export {
     LogoBook,
     LeafTop,
     Hibiscus,
-    Preview
+    Preview,
+    Delete,
+    Search,
+    Confirm,
 }

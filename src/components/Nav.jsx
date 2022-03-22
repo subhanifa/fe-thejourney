@@ -8,7 +8,7 @@ import { UserContext } from '../contexts/UserContext'
 import { useNavigate } from 'react-router-dom'
 import { API } from '../config/api'
 import Dropdown from './Dropdown'
-import { Hibiscus, Journey, LeafIcon, LeafTop, LogoBook } from '../exports/exportImage'
+import { Hibiscus, LeafTop, LogoBook } from '../exports/exportImage'
 
 
 export default function Nav() {
@@ -71,7 +71,11 @@ export default function Nav() {
                 <nav className="absolute w-full top-0 px-2 sm:px-14 py-7 rounded dark:bg-gray-800">
                     <div className="container flex flex-wrap justify-between items-center mx-auto">
                         <button  className="flex items-center">
-                            <span className="self-center text-3xl font-sumvib whitespace-nowrap text-white">The Journey</span>
+                            <Link 
+                            to="/"
+                            className="self-center text-3xl font-sumvib whitespace-nowrap text-white">
+                                The Journey
+                            </Link>
                         </button>
 
                         <button data-collapse-toggle="mobile-menu" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
