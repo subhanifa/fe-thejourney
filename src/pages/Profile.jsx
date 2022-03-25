@@ -39,53 +39,46 @@ export default function Profile() {
     getUserStories()
   }, [])
 
-  const [preview, setPreview] = useState(null);
-  const [form, setForm] = useState({
-    image: "",
-  });
+  const [ preview, setPreview ] = useState(null)
+  const [ form, setForm ] = useState({
+    image: ""
+  })
 
-  const { image } = form;
-  // console.log(image)
   const handleImageChange = (e) => {
     setForm({
       ...form,
       [e.target.name]:
-        e.target.type === "file" ? e.target.files : e.target.value,
-    });
-
-    // Create image url for preview
+       e.target.type === "file" ? e.target.files : e.target.value
+    })
+    // Create Image URL for Preview
     if (e.target.type === "file") {
-      let url = URL.createObjectURL(e.target.files[0]);
-      setPreview(url);
+      let url = URL.createObjectURL(e.target.files[0])
+      setPreview(url)
     }
-  };
+  }
 
-  const handleImageSubmit = async (e) => {
+  const handleImageSubmit = async(e) => {
     try {
-      e.preventDefault();
-
+      e.preventDefault()  
       // Configuration
       const config = {
         headers: {
-          "Content-type": "multipart/form-data",
-        },
-      };
+          "Content-type": "multipart/form-data"
+        }
+      }
 
-      const formData = new FormData();
-      formData.set("image", form.image[0], form.image[0].name);
+      const formData = new FormData()
+      formData.set("image", form.image[0], form.image[0].name)
 
-      const response = await API.patch(
-        "/user/edit/image",
-        formData,
-        config
-      );
-      console.log(response)
+      const response = await API.patch('/user/edit/image', formData, config)
 
-      window.location.reload();
+      window.location.reload()
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
+
+
 
   return (
     <>
@@ -96,31 +89,26 @@ export default function Profile() {
 
           <div className='flex flex-col justify-center items-center'>
               <div className='mb-3'>
-                <img src={preview ? preview : user.image} alt="" className='w-40 rounded-full border-beige border-4'/>
-                {/* <img src={user.image} alt="" className='w-40 rounded-full border-beige border-4'/> */}
+                <img src={ preview ? preview : user.image } alt="" className='w-40 h-40 object-cover rounded-full border-beige border-4'/>
               </div>
               
-              <form onSubmit={handleImageSubmit} className='flex justify-between w-40 '>
-                <label 
-                htmlFor="image"
-                className='cursor-pointer'
-                >
-
-                <input
-                  type="file"
+              {/* Code Here */}
+              <form onSubmit={handleImageSubmit} className="flex justify-between w-40" >
+                <label htmlFor="image" className='cursor-pointer'>
+                <input 
+                  type="file" 
                   id="image"
-                  name="image"
-                  className="sr-only"
+                  name='image'
+                  className='sr-only'
                   onChange={handleImageChange}
                 />
-                  <img src={EditIcon} alt="edit-icon" className='w-7 bg-transparent rounded-full border-beige border-2'/>
+                <img src={EditIcon} alt="Edit-Icon" className='w-7'/>
                 </label>
-
-                <button type="submit">
-                  <img src={Confirm} alt="confirm-icon" className='w-7 bg-transparent rounded-full border-beige border-2'/>
+                <button type='submit'>
+                  <img src={Confirm} alt="Confirm-Icon" className='w-7' />
                 </button>
               </form>
-              
+
               <span>{user.fullname}</span>
               <span>{user.email}</span>
           </div>
