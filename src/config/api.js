@@ -3,7 +3,7 @@ import axios from "axios";
 export const API = axios.create({
   baseURL:
     process.env.REACT_APP_SERVER_URL ||
-    'https://demo-backend-deploy.herokuapp.com/api/v1' ||
+    'https://thejourney-hanif.herokuapp.com/api/v1' ||
     'https://localhost:5000/api/v1',
 });
 
