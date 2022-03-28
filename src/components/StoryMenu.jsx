@@ -6,13 +6,13 @@ import dateformat from 'dateformat'
 import { Bookmark } from '../exports/exportImage'
 import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar"
-import { LoginContext } from '../contexts/AuthContext'
-import { ModalContext } from '../contexts/ModalContext'
+// import { LoginContext } from '../contexts/AuthContext'
+// import { ModalContext } from '../contexts/ModalContext'
 
 export default function StoryMenu() {
 
-  const [login, setLogin] = useContext(LoginContext);
-  const [open, setOpen] = useContext(ModalContext);
+  // const [login, setLogin] = useContext(LoginContext);
+  // const [open, setOpen] = useContext(ModalContext);
 
   const [ stories, setStories ] = useState([])
   const [ user, setUser ] = useState([])
@@ -48,7 +48,7 @@ export default function StoryMenu() {
   
   const addBookmark = async(id) => {
     try {
-      if (login) {
+      // if (login) {
         const config = {
           headers: {
             "Content-type": "application/json",
@@ -58,10 +58,10 @@ export default function StoryMenu() {
         let storyId = {storyId: id};
         const body = JSON.stringify(storyId);
         const response = await API.post("/bookmark", body, config);
-      }
-      else {
-        setOpen(true)
-      }
+      // }
+      // else {
+      //   setOpen(true)
+      // }
     } catch (error) {
       console.log(error)
     }
