@@ -84,7 +84,7 @@ export default function StoryMenu() {
           onClose={handleClose}
           message="Saved to bookmark."
           action={action}
-        />): (null) }
+        />): (<Snackbar open={!box}/>) }
         {/* <Snackbar
           open={box}
           autoHideDuration={3000}
