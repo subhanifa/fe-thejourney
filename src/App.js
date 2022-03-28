@@ -76,7 +76,6 @@ function App() {
         <Nav/>  
         <Modal/>
       </RegisterProvider>
-    </ModalProvider>
 
         <Routes>
           <Route>
@@ -92,6 +91,7 @@ function App() {
             
           </Route>
         </Routes>
+    </ModalProvider>
     </>
   );
 }

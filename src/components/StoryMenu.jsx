@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import StoryCard from './StoryCard'
 import { API } from '../config/api'
 import { Link } from 'react-router-dom'
@@ -6,8 +6,13 @@ import dateformat from 'dateformat'
 import { Bookmark } from '../exports/exportImage'
 import TextField from "@mui/material/TextField";
 import Snackbar from "@mui/material/Snackbar"
+import { LoginContext } from '../contexts/AuthContext'
+import { ModalContext } from '../contexts/ModalContext'
 
 export default function StoryMenu() {
+
+  const [ login, setLogin ] = useContext(LoginContext)
+  const [ modal, setModal ] = useContext(ModalContext)
 
   const [ stories, setStories ] = useState([])
   const [ user, setUser ] = useState([])
@@ -44,16 +49,20 @@ export default function StoryMenu() {
   
   const addBookmark = async(id) => {
     try {
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-        },
-      };
-
-      let storyId = {storyId: id};
-      const body = JSON.stringify(storyId);
-      const response = await API.post("/bookmark", body, config);
-      console.log(response)
+      if (login) {
+        const config = {
+          headers: {
+            "Content-type": "application/json",
+          },
+        };
+  
+        let storyId = {storyId: id};
+        const body = JSON.stringify(storyId);
+        const response = await API.post("/bookmark", body, config);
+        console.log(response)
+      } else {
+        setModal(true);
+      }
     } catch (error) {
       console.log(error)
     }
