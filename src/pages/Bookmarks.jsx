@@ -7,7 +7,7 @@ import dateformat from 'dateformat'
 import Snackbar from "@mui/material/Snackbar"
 
 export default function Bookmarks() {
-  const path = "http://localhost:5000/uploads/"
+  // const path = "http://localhost:5000/uploads/"
   const [ bookmarks, setBookmarks ] = useState([])
   const [ open, setOpen ] = useState(false)
 
@@ -74,7 +74,7 @@ export default function Bookmarks() {
                   </div>
                   <Link to={`/story/${items.storyId}`}>
                     <StoryCard
-                    image={path + items.story.image}
+                    image={items.story.image}
                     title={items.story.title}
                     desc={items.story.desc}
                     date={dateformat(items.story.createdAt, "mediumDate")}
