@@ -11,7 +11,7 @@ import { ModalContext } from '../contexts/ModalContext'
 
 export default function StoryMenu() {
 
-  const [isLogin, setIsLogin] = useContext(LoginContext);
+  const [login, setLogin] = useContext(LoginContext);
   const [open, setOpen] = useContext(ModalContext);
 
   const [ stories, setStories ] = useState([])
@@ -48,7 +48,7 @@ export default function StoryMenu() {
   
   const addBookmark = async(id) => {
     try {
-      if (isLogin) {
+      if (login) {
         const config = {
           headers: {
             "Content-type": "application/json",
