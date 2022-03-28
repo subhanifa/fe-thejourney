@@ -31,7 +31,7 @@ export default function Bookmarks() {
   const getUserBookmarks = async() => {
     try {
         const response = await API.get('/user-bookmarks')
-        // console.log(response);
+        console.log(response);
         setBookmarks(response.data.user.data)
     } catch (error) {
       console.log(error)
