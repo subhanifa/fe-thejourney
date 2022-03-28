@@ -7,7 +7,7 @@ import dateformat from 'dateformat'
 import Snackbar from "@mui/material/Snackbar"
 
 export default function Bookmarks() {
-  const path = "https://res.cloudinary.com/subhanifa/image/upload/v1648441282/"
+  const path = "https://res.cloudinary.com/subhanifa/image/upload/"
   const [ bookmarks, setBookmarks ] = useState([])
   const [ open, setOpen ] = useState(false)
 
