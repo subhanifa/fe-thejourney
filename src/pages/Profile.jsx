@@ -72,7 +72,7 @@ export default function Profile() {
 
       const response = await API.patch('/user/edit/image', formData, config)
 
-      window.location.reload()
+      // window.location.reload()
     } catch (error) {
       console.log(error)
     }
