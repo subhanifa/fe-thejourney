@@ -78,13 +78,20 @@ export default function StoryMenu() {
 
   return (
     <div className='relative mx-5 my-4 md:mx-20 md:my-8'>
-        <Snackbar
+      {login ? (<Snackbar
           open={box}
           autoHideDuration={3000}
           onClose={handleClose}
           message="Saved to bookmark."
           action={action}
-        />
+        />): (null) }
+        {/* <Snackbar
+          open={box}
+          autoHideDuration={3000}
+          onClose={handleClose}
+          message="Saved to bookmark."
+          action={action}
+        /> */}
         <div className='flex justify-between items-center'>
           <h1 className='text-3xl md:mx-3 md:text-4xl font-bold font-patrick tracking-wider '>
             Journey
