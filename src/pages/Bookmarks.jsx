@@ -41,7 +41,7 @@ export default function Bookmarks() {
   const deleteBookmark = async (id) => {
     try {
       const response = await API.delete("/bookmark/" + id);
-      console.log(response);
+      // console.log(response);
       getUserBookmarks();
     } catch (error) {
       console.log(error);
