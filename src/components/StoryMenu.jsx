@@ -12,23 +12,23 @@ import { ModalContext } from '../contexts/ModalContext'
 export default function StoryMenu() {
 
   const [ login, setLogin ] = useContext(LoginContext)
-  const [ modal, setModal ] = useContext(ModalContext)
+  const [ open, setOpen ] = useContext(ModalContext)
 
   const [ stories, setStories ] = useState([])
   const [ user, setUser ] = useState([])
 
-  const [ open, setOpen ] = useState(false)
+  const [ box, setBox ] = useState(false)
   const [ search, setSearch ] = useState("");
 
   const handleClick = async() => {
-    setOpen(!open)
+    setBox(!box)
   }
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-    setOpen(false);
+    setBox(false);
   };
 
   const action = (
@@ -61,7 +61,7 @@ export default function StoryMenu() {
         const response = await API.post("/bookmark", body, config);
         console.log(response)
       } else {
-        setModal(true);
+        setOpen(true);
       }
     } catch (error) {
       console.log(error)
@@ -79,7 +79,7 @@ export default function StoryMenu() {
   return (
     <div className='relative mx-5 my-4 md:mx-20 md:my-8'>
         <Snackbar
-          open={open}
+          open={box}
           autoHideDuration={3000}
           onClose={handleClose}
           message="Saved to bookmark."
