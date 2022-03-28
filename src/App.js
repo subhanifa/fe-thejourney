@@ -14,9 +14,9 @@ import LandingPages from './pages/LandingPages';
 import Profile from './pages/Profile';
 import StoryDetail from './pages/StoryDetail';
 
-// if (localStorage.token) {
-//   setAuthToken(localStorage.token);
-// }
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 function App() {
   let navigate = useNavigate();
